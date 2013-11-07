@@ -2,3 +2,14 @@
 	margin: 1%;
 	text-align:center;
 }
+
+.bottom-bar{
+bottom: 0px;
+width: 100%;
+margin-bottom: 0px;
+}
+
+.centrado{
+	text-align: center;
+}
+

@@ -75,47 +75,20 @@
     </ul>
   </section>
 </nav>
-	
-	<!-- Orbit Container -->
+
 <div class="row">
-	<div class="large-12 columns">
-		<h3 class="h3centrado">Ultimos Juegos</h3>
-		<hr/>
-	</div>
-</div>
-<div class="flexslider" style="margin: 3% auto; width: 800px; height: 600px;">
-  <ul class="slides">
-    <li>
-      <img src="./img/ogame.jpg">
-    </li>
-    <li class="active">
-      <img src="./img/warface-logo.jpg">
-    </li>
-    <li>
-      <img src="./img/gw2logo.png">
-    </li>
-    <li>
-      <img src="./img/tera.jpg">
-    </li>
-    <li>
-      <img src="./img/blackdesert.jpg" style="width: 800px; height: 600px;">
-    </li>
-  </ul>
+    <div class="large-12 columns">
+      <h2>Shooter: Noticias</h2>
+      <hr />
+    </div>
 </div>
 
-  <div class="row">
-		<div class="large-12 columns">
-			<h2>Ultimas Noticias</h2>
-			<hr />
-		</div>
-	</div>
-			<!-- Grid Example -->
-      <?PHP
+<?PHP
           $conexion = new mysqli('mysql.hostinger.es','u899263272_01','SqRWDLPX6E','u899263272_01');
           if(!$conexion) printf("Fallo al conectar con la base de datos: %s", mysqli_connect_error()); #En caso de haber algun fallo en la conexion mostrara el error.
-          $consulta = $conexion->query("SELECT * FROM Noticias ORDER BY Fecha DESC LIMIT 6");
-          for ($i=0; $i<5 ; $i=$i+2) { 
-            $resultado=mysqli_fetch_row($consulta);
+          $consulta = $conexion->query("SELECT * FROM Noticias WHERE Genero='SHOOTER' ORDER BY Fecha DESC");
+          $resultado=mysqli_fetch_row($consulta);
+          while ($resultado!=NULL) { 
             echo "<div class=\"row\">";
             echo "<div class=\"large-6 columns\">";
             echo "<div class=\"panel\">";
@@ -126,21 +99,23 @@
             echo "</div>";
             echo "</div>";
             $resultado=mysqli_fetch_row($consulta);
-            echo "<div class=\"large-6 columns\">";
-            echo "<div class=\"panel\">";
-            echo "<h4>".$resultado[0]."</h4>";
-            echo "<hr/>";
-            echo "<p>".$resultado[2]."</p>";
-            echo "<a class=\"small button success radius\" href=\"./pgenerica.html?ID=".$resultado[4]."\">Leer Mas</a>";
-            echo "</div>";
-            echo "</div>";
+            if($resultado!=NULL){
+              echo "<div class=\"large-6 columns\">";
+              echo "<div class=\"panel\">";
+              echo "<h4>".$resultado[0]."</h4>";
+              echo "<hr/>";
+              echo "<p>".$resultado[2]."</p>";
+              echo "<a class=\"small button success radius\" href=\"./pgenerica.html?ID=".$resultado[4]."\">Leer Mas</a>";
+              echo "</div>";
+              echo "</div>";
+              $resultado=mysqli_fetch_row($consulta);
+            }
             echo "</div>";
           }
           mysqli_close($conexion);
       ?>
-			
-	<nav class="top-bar bottom-bar">
-	</nav>
+      <nav class="top-bar bottom-bar">
+  </nav>
 
   <script>
   document.write('<script src=' +
@@ -148,17 +123,17 @@
   '.js><\/script>')
   </script>
   
-  	<script src="./js/foundation.min.js"></script>
+    <script src="./js/foundation.min.js"></script>
 
-  	<script src="./js/vendor/jquery.js"></script>	
+    <script src="./js/vendor/jquery.js"></script> 
 
-	<script src="./js/foundation.min.js"></script>
+  <script src="./js/foundation.min.js"></script>
 
-	<script src="./js/jquery.flexslider.js"></script>
+  <script src="./js/jquery.flexslider.js"></script>
 
-	<script>
-		$(window).load(function() {$('.flexslider').flexslider({animation: "slide"});});
-	</script>
+  <script>
+    $(window).load(function() {$('.flexslider').flexslider({animation: "slide"});});
+  </script>
 
   <!--
   
@@ -201,3 +176,5 @@
   </script>
 </body>
 </html>
+
+
